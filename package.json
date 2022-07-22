@@ -1,6 +1,6 @@
 {
   "name": "package-depend-list",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -34,7 +34,9 @@
     "url": "https://github.com/DerGoogler/package-depend-list/issues"
   },
   "homepage": "https://github.com/DerGoogler/package-depend-list#README",
-  "dependencies": {},
+  "dependencies": {
+    "googlers-tools": "^1.2.9"
+  },
   "devDependencies": {
     "postcss": "^8.4.14",
     "rollup-plugin-postcss": "^4.0.2",

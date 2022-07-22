@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import deprecated from "util/deprecated";
+import { util } from "googlers-tools";
 
 enum DependType {
   dependencies = "dependencies",
@@ -92,13 +92,13 @@ class PackageDependList {
   /**
    * @deprecated This method has an wrong implementation
    */
-  @deprecated("This method has an wrong implementation")
+  @util.deprecated("This method has an wrong implementation")
   public toJSONString(): void {}
 
   /**
    * @deprecated This method has an wrong implementation
    */
-  @deprecated("This method has an wrong implementation")
+  @util.deprecated("This method has an wrong implementation")
   public json(): void {}
 }
 
