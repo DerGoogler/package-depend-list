@@ -1,42 +1,13 @@
 {
   "name": "package-depend-list",
-  "version": "1.0.2",
-  "description": "",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "module": "dist/onuix.esm.js",
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "resolutions": {
-    "**/typescript": "^4.1.3"
-  },
-  "keywords": [
-    "dg",
-    "tools",
-    "typescript"
-  ],
+  "version": "1.0.3",
+  "author": "Der_Googler <jimmyboehm@dergoogler.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/DerGoogler/package-depend-list"
   },
-  "author": "Der_Googler <jimmyboehm@dergoogler.com>",
-  "bugs": {
-    "url": "https://github.com/DerGoogler/package-depend-list/issues"
-  },
-  "homepage": "https://github.com/DerGoogler/package-depend-list#README",
-  "dependencies": {
-    "googlers-tools": "^1.2.9"
-  },
+  "main": "dist/index.js",
+  "module": "dist/onuix.esm.js",
   "devDependencies": {
     "postcss": "^8.4.14",
     "rollup-plugin-postcss": "^4.0.2",
@@ -44,7 +15,33 @@
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },
+  "bugs": {
+    "url": "https://github.com/DerGoogler/package-depend-list/issues"
+  },
+  "description": "",
   "files": [
     "/dist"
-  ]
+  ],
+  "homepage": "https://github.com/DerGoogler/package-depend-list#README",
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "keywords": [
+    "dg",
+    "tools",
+    "typescript"
+  ],
+  "resolutions": {
+    "**/typescript": "^4.1.3"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build"
+  },
+  "typings": "dist/index.d.ts"
 }

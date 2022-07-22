@@ -1,5 +1,4 @@
 import * as fs from "fs";
-import { util } from "googlers-tools";
 
 enum DependType {
   dependencies = "dependencies",
@@ -88,18 +87,6 @@ class PackageDependList {
   public devDependencies<T extends ParseOptions>(toString?: T): ObjectType<T> {
     return toString ? JSON.stringify(this.core(DependType.devDependencies)) : (this.core(DependType.devDependencies) as any);
   }
-
-  /**
-   * @deprecated This method has an wrong implementation
-   */
-  @util.deprecated("This method has an wrong implementation")
-  public toJSONString(): void {}
-
-  /**
-   * @deprecated This method has an wrong implementation
-   */
-  @util.deprecated("This method has an wrong implementation")
-  public json(): void {}
 }
 
 export { PackageDependList, DependType };
