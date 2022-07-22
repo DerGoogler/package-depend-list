@@ -1,5 +1,5 @@
 {
-  "name": "typescript",
+  "name": "package-depend-list",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -27,17 +27,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/<repo>"
+    "url": "https://github.com/DerGoogler/package-depend-list"
   },
-  "author": "",
+  "author": "Der_Googler <jimmyboehm@dergoogler.com>",
   "bugs": {
-    "url": "https://github.com/<repo>/issues"
+    "url": "https://github.com/DerGoogler/package-depend-list/issues"
   },
-  "homepage": "https://github.com/<repo>",
+  "homepage": "https://github.com/DerGoogler/package-depend-list#README",
   "dependencies": {},
   "devDependencies": {
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
+    "postcss": "^8.4.14",
     "rollup-plugin-postcss": "^4.0.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
