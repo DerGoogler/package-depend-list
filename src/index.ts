@@ -10,14 +10,7 @@ interface Options {
   node_modules: string;
 }
 
-interface IPackageDependList {
-  dependencies(): Array<Packages> | Omit<this, "dependencies" | "devDependencies">;
-  devDependencies(): Array<Packages> | Omit<this, "dependencies" | "devDependencies">;
-  toJSONString(): string;
-  get json(): Array<Packages>
-}
-
-type PackageFileType = `${string}.json`;
+type PackageFileType = string;
 
 interface Package {
   readonly dependencies: any;
@@ -39,7 +32,7 @@ interface Packages {
   homepage: string | undefined;
 }
 
-class PackageDependList implements IPackageDependList {
+class PackageDependList {
   private packageFile: PackageFileType;
   private nodeModulesFolder: string;
   private outputArray: Array<Packages>;
