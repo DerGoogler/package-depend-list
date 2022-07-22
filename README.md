@@ -28,8 +28,8 @@ const pkg = new PackageDependList({
   node_modules: path.resolve("./", "node_modules"),
 });
 
-// Prints as JSON
-console.log(pkg.devDependencies().json);
-// Prints as JSON string
-console.log(pkg.devDependencies().toJSONString());
+// if `true`, get the array as a string
+console.log(pkg.dependencies(true));
+// if `false`, get output as js array
+console.log(pkg.devDependencies(false));
 ```

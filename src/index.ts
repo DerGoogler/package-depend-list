@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import deprecated from "util/deprecated";
 
 enum DependType {
   dependencies = "dependencies",
@@ -6,15 +7,8 @@ enum DependType {
 }
 
 interface Options {
-  package: PackageFileType;
+  package: string;
   node_modules: string;
-}
-
-type PackageFileType = string;
-
-interface Package {
-  readonly dependencies: any;
-  readonly devDependencies: any;
 }
 
 interface Author {
@@ -22,7 +16,7 @@ interface Author {
   email: string;
 }
 
-interface Packages {
+export interface Packages {
   author: string | Author | undefined;
   name: string | undefined;
   version: string | undefined;
@@ -32,15 +26,27 @@ interface Packages {
   homepage: string | undefined;
 }
 
+type OutArray = {
+  dependencies: Array<Packages>;
+  devDependencies: Array<Packages>;
+};
+
+type ParseOptions = true | false;
+
+type ObjectType<T> = T extends false ? Array<Packages> : T extends true ? string : never;
+
 class PackageDependList {
-  private packageFile: PackageFileType;
+  private packageFile: string;
   private nodeModulesFolder: string;
-  private outputArray: Array<Packages>;
+  private outputArray: OutArray;
 
   public constructor(options: Options) {
     this.packageFile = options.package;
     this.nodeModulesFolder = options.node_modules;
-    this.outputArray = [];
+    this.outputArray = {
+      dependencies: [],
+      devDependencies: [],
+    };
   }
 
   private core(type: DependType): Array<Packages> {
@@ -51,7 +57,7 @@ class PackageDependList {
       const packagePath = `${this.nodeModulesFolder}/${element}/package.json`;
       const getPackage = JSON.parse(fs.readFileSync(packagePath, "utf-8"));
       const { author, name, version, description, repository, license, homepage }: Packages = getPackage;
-      this.outputArray.push({
+      this.outputArray[type].push({
         name: name,
         description: description,
         author: author,
@@ -62,26 +68,38 @@ class PackageDependList {
       });
     });
 
-    return this.outputArray;
+    return this.outputArray[type];
   }
 
-  public dependencies(): Omit<this, "dependencies" | "devDependencies"> {
-    this.core(DependType.dependencies);
-    return this;
+  /**
+   * Gets the dependencies of the target package
+   * @param toString Pases the array to an string
+   * @returns String or object array
+   */
+  public dependencies<T extends ParseOptions>(toString?: T): ObjectType<T> {
+    return toString ? JSON.stringify(this.core(DependType.dependencies)) : (this.core(DependType.dependencies) as any);
   }
 
-  public devDependencies(): Omit<this, "dependencies" | "devDependencies"> {
-    this.core(DependType.devDependencies);
-    return this;
+  /**
+   * Gets the devDependencies of the target package
+   * @param toString Pases the array to an string
+   * @returns String or object array
+   */
+  public devDependencies<T extends ParseOptions>(toString?: T): ObjectType<T> {
+    return toString ? JSON.stringify(this.core(DependType.devDependencies)) : (this.core(DependType.devDependencies) as any);
   }
 
-  public toJSONString(): string {
-    return JSON.stringify(this, null, 4);
-  }
+  /**
+   * @deprecated This method has an wrong implementation
+   */
+  @deprecated("This method has an wrong implementation")
+  public toJSONString(): void {}
 
-  public get json(): Array<Packages> {
-    return this.outputArray;
-  }
+  /**
+   * @deprecated This method has an wrong implementation
+   */
+  @deprecated("This method has an wrong implementation")
+  public json(): void {}
 }
 
 export { PackageDependList, DependType };
